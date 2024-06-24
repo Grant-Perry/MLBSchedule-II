@@ -1,26 +1,38 @@
-//   ContentView.swift
-//   MLBSchedule
-//
-//   Created by: Grant Perry on 6/23/24 at 11:03 AM
-//     Modified: 
-//
-//  Copyright © 2024 Delicious Studios, LLC. - Grant Perry
-//
-
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
+//   @StateObject private var viewModel = MLBTeamSchedulesViewModel()
+
+   var body: some View {
+	  Text("HI")
+   }
+//	  VStack {
+//		 if viewModel.teams.isEmpty {
+//			Text("Loading...")
+//			   .onAppear {
+//				  viewModel.fetchMLBTeamSchedules()
+//			   }
+//		 } else {
+//			List {
+//			   ForEach(viewModel.teams.keys.sorted(), id: \.self) { team in
+//				  Section(header: Text(team)) {
+//					 ForEach(viewModel.teams[team]?.keys.sorted() ?? [], id: \.self) { date in
+//						if let details = viewModel.teams[team]?[date] {
+//						   VStack(alignment: .leading) {
+//							  Text("Date: \(date)")
+//							  Text(details)
+//						   }
+//						}
+//					 }
+//				  }
+//			   }
+//			}
+//		 }
+//	  }
+//	  .padding()
+//   }
 }
 
 #Preview {
-    ContentView()
+   ContentView()
 }

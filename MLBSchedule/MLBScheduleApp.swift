@@ -13,7 +13,7 @@ import SwiftUI
 struct MLBScheduleApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TeamScheduleView()
         }
     }
 }
