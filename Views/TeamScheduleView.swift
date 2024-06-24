@@ -57,7 +57,7 @@ struct TeamScheduleView: View {
 						   AsyncImage(url: awayLogoURL) { image in
 							  image.resizable()
 								 .scaledToFit()
-								 .frame(width: 70 * 1.25)
+								 .frame(width: 50)
 								 .background(Color.clear)
 								 .clipShape(Circle())
 								 .overlay(Circle().stroke(Color.gray, lineWidth: 1))
@@ -96,7 +96,7 @@ struct TeamScheduleView: View {
 						   AsyncImage(url: homeLogoURL) { image in
 							  image.resizable()
 								 .scaledToFit()
-								 .frame(width: 70 * 1.25)
+								 .frame(width: 50)
 								 .background(Color.clear)
 								 .clipShape(Circle())
 								 .overlay(Circle().stroke(Color.gray, lineWidth: 1))
@@ -106,14 +106,12 @@ struct TeamScheduleView: View {
 						}
 					 }
 				  }
-
 				  .onTapGesture {
 					 if let url = URL(string: "https://www.espn.com" + event.link) {
 						UIApplication.shared.open(url)
 					 }
 				  }
 			   }
-			   .border(.red)
 //			   .padding(.bottom, bottomPadding)
 			   .padding(.top, -18)
 			}
