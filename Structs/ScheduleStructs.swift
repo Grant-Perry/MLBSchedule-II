@@ -31,8 +31,14 @@ struct Competitor: Codable {
    let logo: String
    let isHome: Bool
    let score: Int?
+   let probable: Probable?
 }
 
 struct Venue: Codable {
    let fullName: String
+}
+
+struct Probable: Codable {
+   let shortName: String
+   let href: String
 }

@@ -106,14 +106,12 @@ struct TeamScheduleView: View {
 						}
 					 }
 				  }
-
 				  .onTapGesture {
 					 if let url = URL(string: "https://www.espn.com" + event.link) {
 						UIApplication.shared.open(url)
 					 }
 				  }
 			   }
-			   .border(.red)
 //			   .padding(.bottom, bottomPadding)
 			   .padding(.top, -18)
 			}
