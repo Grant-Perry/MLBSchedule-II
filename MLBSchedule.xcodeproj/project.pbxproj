@@ -50,7 +50,7 @@
 		9B10F60C2C2871CD008EB697 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				MLBSchedViewModel.swift,
+				ScheduleViewModel.swift,
 			);
 			target = 9B10F5DB2C2870DB008EB697 /* MLBSchedule */;
 		};
@@ -65,6 +65,8 @@
 		9B10F6152C28C990008EB697 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				DateButtonView.swift,
+				MatchupHeaderView.swift,
 				TeamScheduleView.swift,
 			);
 			target = 9B10F5DB2C2870DB008EB697 /* MLBSchedule */;
