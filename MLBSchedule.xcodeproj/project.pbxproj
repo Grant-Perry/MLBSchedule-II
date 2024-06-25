@@ -67,6 +67,7 @@
 			membershipExceptions = (
 				DateButtonView.swift,
 				MatchupHeaderView.swift,
+				MatchupView.swift,
 				TeamScheduleView.swift,
 			);
 			target = 9B10F5DB2C2870DB008EB697 /* MLBSchedule */;
@@ -75,6 +76,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				AppConstants.swift,
+				AsyncImageLoad.swift,
 			);
 			target = 9B10F5DB2C2870DB008EB697 /* MLBSchedule */;
 		};
@@ -480,7 +482,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.grantperry.MLBSchedule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -510,7 +512,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.grantperry.MLBSchedule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

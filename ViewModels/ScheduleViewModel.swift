@@ -48,8 +48,10 @@ class ScheduleViewModel: ObservableObject {
 	  return eventDateFormatter.string(from: date)
    }
 
-    func loadSchedule(for date: Date) {
+   func loadSchedule(for date: Date) {
 	  let dateString = dateFormatter.string(from: date)
+	  print("Loading schedule for date: \(dateString)")
+
 	  let urlString = "https://www.espn.com/mlb/schedule/_/date/\(dateString)?_xhr=pageContent&refetchShell=false&offset=-04:00&original=date=\(dateString)&date=\(dateString)"
 
 	  guard let url = URL(string: urlString) else { return }
@@ -68,6 +70,7 @@ class ScheduleViewModel: ObservableObject {
 		 do {
 			let scoreboard = try JSONDecoder().decode(Scoreboard.self, from: data)
 			DispatchQueue.main.async {
+			   print("Loaded events: \(scoreboard.events.count)")
 			   self.events = scoreboard.events[dateString] ?? []
 			   self.filteredEvents = self.events
 			}
@@ -76,6 +79,7 @@ class ScheduleViewModel: ObservableObject {
 		 }
 	  }.resume()
    }
+
 
     func extractDateAndTime(from dateString: String) -> (String, String) {
 	  // Create a DateFormatter for parsing the input date string

@@ -2,7 +2,7 @@
 //   MLBSchedule
 //
 //   Created by: Grant Perry on 6/25/24 at 1:30 PM
-//     Modified: 
+//     Modified:
 //
 //  Copyright © 2024 Delicious Studios, LLC. - Grant Perry
 //
@@ -11,6 +11,8 @@ import SwiftUI
 let vm = ScheduleViewModel.shared
 
 struct DateButtonView: View {
+   @ObservedObject var vm = ScheduleViewModel.shared
+
    var body: some View {
 	  HStack {
 		 ForEach(0..<7, id: \.self) { day in
@@ -23,8 +25,9 @@ struct DateButtonView: View {
 				  .frame(width: 70)
 				  .padding()
 				  .background(vm.selectedDate == vm.dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: day,
-																							   to: Date()) ?? Date()) ? Color.blue : Color.clear)
-				  .foregroundColor(vm.selectedDate == vm.dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: day, to: Date()) ?? Date()) ? .white : .black)
+																									 to: Date()) ?? Date()) ? Color.blue : Color.clear)
+				  .foregroundColor(vm.selectedDate == vm.dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: day, 
+																										  to: Date()) ?? Date()) ? .white : .black)
 				  .cornerRadius(8)
 				  .multilineTextAlignment(.center)
 			}
@@ -36,6 +39,12 @@ struct DateButtonView: View {
    }
 }
 
+// Preview
 #Preview {
-    DateButtonView()
+   DateButtonView()
+}
+
+
+#Preview {
+   DateButtonView()
 }
