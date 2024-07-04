@@ -2,11 +2,10 @@ import SwiftUI
 
 class ScheduleViewModel: ObservableObject {
    static let shared = ScheduleViewModel()
-   @State var selectedDate: String = ""
-   @State var events: [Event] = []
-   @State var filteredEvents: [Event] = []
+   @Published var selectedDate: String = ""
+   @Published var events: [Event] = []
+   @Published var filteredEvents: [Event] = []
 
-   
    let dateFormatter: DateFormatter = {
 	  let formatter = DateFormatter()
 	  formatter.dateFormat = "yyyyMMdd"
@@ -34,14 +33,14 @@ class ScheduleViewModel: ObservableObject {
 		 .first { $0.isKeyWindow }?.safeAreaInsets.bottom ?? 0
    }
 
-    func formattedDateButton(for day: Int) -> String {
+   func formattedDateButton(for day: Int) -> String {
 	  let date = Calendar.current.date(byAdding: .day, value: day, to: Date()) ?? Date()
 	  let formatter = DateFormatter()
 	  formatter.dateFormat = "MMM d\n(E)"
 	  return formatter.string(from: date)
    }
 
-    func formattedEventDate(_ date: String) -> String {
+   func formattedEventDate(_ date: String) -> String {
 	  let formatter = ISO8601DateFormatter()
 	  formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
 	  guard let date = formatter.date(from: date) else { return date }
@@ -80,20 +79,16 @@ class ScheduleViewModel: ObservableObject {
 	  }.resume()
    }
 
-
-    func extractDateAndTime(from dateString: String) -> (String, String) {
-	  // Create a DateFormatter for parsing the input date string
+   func extractDateAndTime(from dateString: String) -> (String, String) {
 	  let dateFormatter = DateFormatter()
 	  dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mmZ"
-	  dateFormatter.timeZone = TimeZone(secondsFromGMT: 0) // Ensure it's parsed as UTC
+	  dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
 
 	  if let date = dateFormatter.date(from: dateString) {
-		 // Format start date
 		 let dateFormatter = DateFormatter()
 		 dateFormatter.dateFormat = "MMM d"
 		 let startDate = dateFormatter.string(from: date)
 
-		 // Format start time considering EST/EDT
 		 let timeFormatter = DateFormatter()
 		 timeFormatter.dateFormat = "h:mm a"
 		 timeFormatter.timeZone = TimeZone.current
@@ -104,5 +99,4 @@ class ScheduleViewModel: ObservableObject {
 		 return ("N/A", "N/A")
 	  }
    }
-
 }

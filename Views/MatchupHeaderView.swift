@@ -1,54 +1,49 @@
-//   MatchupHeaderView.swift
-//   MLBSchedule
-//
-//   Created by: Grant Perry on 6/25/24 at 1:19 PM
-//     Modified: 
-//
-//  Copyright © 2024 Delicious Studios, LLC. - Grant Perry
-//
-
 import SwiftUI
 
 struct MatchupHeaderView: View {
    var visitors: String
    var home: String
 
-    var body: some View {
-	   VStack {
-		  HStack {
-			 Spacer()
-		     HStack {
-			   Text(visitors)
-				   .font(.title3)
-				   .fontWeight(.bold)
-				   .lineLimit(2)
-				   .minimumScaleFactor(0.5)
-				   .scaledToFit()
+   var body: some View {
+	  HStack {
+		 Text(visitors)
+			.font(.title3)
+			.lineLimit(2)
+			.minimumScaleFactor(0.5)
+			.frame(maxWidth: .infinity, alignment: .center) // Centered text
+			.frame(width: UIScreen.main.bounds.width * 0.35)
+			.multilineTextAlignment(.center)
+			.padding(.leading)
 
-			 }
-			 Spacer()
-			 HStack {
-				Text("vs.")
-				   .font(.footnote)
-				   .foregroundColor(.black)
-			 }
-			 Spacer()
-			 HStack {
-				Text(home)
-				   .font(.title3)
-				   .fontWeight(.bold)
-				   .lineLimit(2)
-				   .minimumScaleFactor(0.5)
-				   .scaledToFit()
-			 }
-			 Spacer()
-		  }
+		 Text("vs.")
+			.font(.footnote)
+			.foregroundColor(.white)
+			.frame(width: UIScreen.main.bounds.width * 0.06)
 
-	   }
-	   .frame(maxWidth: .infinity)
-    }
+		 Text(home)
+			.font(.title3)
+			.lineLimit(2)
+			.minimumScaleFactor(0.5)
+			.frame(maxWidth: .infinity, alignment: .center) // Centered text
+			.frame(width: UIScreen.main.bounds.width * 0.35)
+			.multilineTextAlignment(.center)
+			.padding(.trailing)
+
+	  }
+	  .padding(.bottom, 4)
+	  .shadow(radius: 4)
+	  .frame(maxWidth: .infinity, alignment: .center)
+	  .background(LinearGradient(gradient: Gradient(colors: [.gpBlueLight, .gpBlueDark]),
+								 startPoint: .top, 
+								 endPoint: .bottom))
+		 .cornerRadius(10)
+		 .foregroundColor(.gpWhite)
+   }
 }
 
+
+
+// Preview
 #Preview {
    MatchupHeaderView(visitors: "New York Mets", home: "New York Yankees")
 }

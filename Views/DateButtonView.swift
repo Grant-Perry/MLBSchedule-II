@@ -22,28 +22,26 @@ struct DateButtonView: View {
 			   vm.loadSchedule(for: newSelectedDate)
 			}) {
 			   Text(vm.formattedDateButton(for: day))
-				  .frame(width: 70)
+				  .frame(width: 50)
 				  .padding()
-				  .background(vm.selectedDate == vm.dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: day,
-																									 to: Date()) ?? Date()) ? Color.blue : Color.clear)
-				  .foregroundColor(vm.selectedDate == vm.dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: day, 
-																										  to: Date()) ?? Date()) ? .white : .black)
+//				  .background(vm.selectedDate == vm.dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: day,
+//																									 to: Date()) ?? Date()) ? Color.gpBlueLight : Color.clear)
+				  .foregroundColor(vm.selectedDate == vm.dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: day,
+																										  to: Date()) ?? Date()) ? .gpWhite : .gray)
 				  .cornerRadius(8)
 				  .multilineTextAlignment(.center)
 			}
-			.background(.blue.gradient)
-			.opacity(0.5)
+//			.background(.blue.gradient)
+			.background(LinearGradient(gradient: Gradient(colors: [.gpBlueLight, .gpBlueDark]),
+									   startPoint: .top,
+									   endPoint: .bottom))
+			.font(.footnote)
+//			.opacity(0.5)
 			.cornerRadius(10.0)
 		 }
 	  }
    }
 }
-
-// Preview
-#Preview {
-   DateButtonView()
-}
-
 
 #Preview {
    DateButtonView()
