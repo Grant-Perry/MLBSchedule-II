@@ -24,19 +24,17 @@ struct DateButtonView: View {
 			   Text(vm.formattedDateButton(for: day))
 				  .frame(width: 50)
 				  .padding()
-//				  .background(vm.selectedDate == vm.dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: day,
-//																									 to: Date()) ?? Date()) ? Color.gpBlueLight : Color.clear)
-				  .foregroundColor(vm.selectedDate == vm.dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: day,
-																										  to: Date()) ?? Date()) ? .gpWhite : .gray)
+				  .background(vm.selectedDate == vm.dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: day, to: Date()) ?? Date()) ? Color.gpBlueLight : Color.clear)
+				  .foregroundColor(vm.selectedDate == vm.dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: day, to: Date()) ?? Date()) ? .gpWhite : .gray)
 				  .cornerRadius(8)
 				  .multilineTextAlignment(.center)
 			}
-//			.background(.blue.gradient)
-			.background(LinearGradient(gradient: Gradient(colors: [.gpBlueLight, .gpBlueDark]),
-									   startPoint: .top,
-									   endPoint: .bottom))
-			.font(.footnote)
+//			.background(LinearGradient(gradient: Gradient(colors: [.gpBlueLight, .gpBlueDark]),
+//									   startPoint: .top,
+//									   endPoint: .bottom))
+			.font(vm.selectedDate == vm.dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: day, to: Date()) ?? Date()) ? .system(size: 14) : .system(size: 12))
 //			.opacity(0.5)
+			.opacity(vm.selectedDate == vm.dateFormatter.string(from: Calendar.current.date(byAdding: .day, value: day, to: Date()) ?? Date()) ? 1.0 : 0.5 )
 			.cornerRadius(10.0)
 		 }
 	  }

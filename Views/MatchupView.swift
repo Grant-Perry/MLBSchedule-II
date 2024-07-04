@@ -10,10 +10,10 @@ struct MatchupView: View {
 		 if let awayTeam = event.competitors.first(where: { !$0.isHome }),
 			let homeTeam = event.competitors.first(where: { $0.isHome }) {
 
-			MatchupHeaderView(visitors: awayTeam.displayName, home: homeTeam.displayName)
-			   .padding(.bottom, 5)
-			   .multilineTextAlignment(.center)
-			   .lineLimit(2)
+//			MatchupHeaderView(visitors: awayTeam.displayName, home: homeTeam.displayName)
+//			   .padding(.bottom, 5)
+//			   .multilineTextAlignment(.center)
+//			   .lineLimit(2)
 
 			HStack {
 			   // Away Logo and Record
@@ -46,10 +46,10 @@ struct MatchupView: View {
 				  Text("\(formattedTime)")
 					 .font(.headline)
 				  Text(event.venue.fullName)
-					 .font(.subheadline)
+					 .font(.system(size: 10))
 			   }
 			   .frame(maxHeight: .infinity, alignment: .center)
-//			   .padding(.top, -40)
+			   .padding(.top, -40) // move time & venue up a bit
 
 			   // Home Logo and Record
 			   if let homeLogoURL = URL(string: homeTeam.logo) {

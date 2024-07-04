@@ -2,40 +2,79 @@ import SwiftUI
 
 struct TeamScheduleView: View {
    @ObservedObject var vm = ScheduleViewModel.shared
+   @State private var selectedDate = Date()
 
    var body: some View {
 	  NavigationView {
 		 VStack {
-			ScrollView(.horizontal) {
-			   DateButtonView()
+			// Header with Calendar Icon and Date Picker
+			HStack {
+			   Spacer()
+			   DatePicker(
+				  "",
+				  selection: Binding(
+					 get: { selectedDate },
+					 set: { newValue in
+						selectedDate = newValue
+						vm.selectedDate = vm.dateFormatter.string(from: newValue)
+						vm.loadSchedule(for: newValue)
+					 }
+				  ),
+				  displayedComponents: [.date]
+			   )
+			   .datePickerStyle(CompactDatePickerStyle())
+			   .labelsHidden()
+			   .frame(maxWidth: 150)
+			   .id(selectedDate) // Ensure DatePicker updates when the date changes
+
+			   Image(systemName: "calendar")
+				  .padding(.trailing)
+				  .overlay {
+					 DatePicker(
+						"",
+						selection: Binding(
+						   get: { selectedDate },
+						   set: { newValue in
+							  selectedDate = newValue
+							  vm.selectedDate = vm.dateFormatter.string(from: newValue)
+							  vm.loadSchedule(for: newValue)
+						   }
+						),
+						displayedComponents: [.date]
+					 )
+					 .blendMode(.destinationOver)
+				  }
 			}
+			.padding(.horizontal)
 			.padding(.top, 8)
 			.padding(.bottom, 8)
-			Spacer()
-
-			HStack {
-			   Text(vm.headerDateFormatter.string(from: vm.dateFormatter.date(from: vm.selectedDate) ?? Date()))
-				  .font(.title2)
-				  .padding(.leading)
-			   Spacer()
-			}
 
 			if vm.filteredEvents.isEmpty {
 			   ProgressView()
 			} else {
+			   HStack {
+				  Text(vm.headerDateFormatter.string(from: vm.dateFormatter.date(from: vm.selectedDate) ?? Date()))
+					 .font(.title3)
+					 .padding(.leading)
+				  Spacer()
+			   }
+
 			   List(vm.filteredEvents, id: \.id) { event in
 				  MatchupView(event: event)
 					 .environmentObject(vm)
 			   }
 			   .padding(.top, -14)
+			   .background(.clear)
 			}
 		 }
 		 .onAppear {
 			let today = Date()
+			selectedDate = today
 			vm.selectedDate = vm.dateFormatter.string(from: today)
 			vm.loadSchedule(for: today)
 		 }
 		 .preferredColorScheme(.dark)
+		 .navigationBarTitle("MLB Schedule", displayMode: .inline)
 	  }
    }
 }
