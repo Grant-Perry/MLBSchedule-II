@@ -2,7 +2,7 @@
 //   MLBSchedule
 //
 //   Created by: Grant Perry on 6/24/24 at 11:02 AM
-//     Modified: 
+//     Modified:
 //
 //  Copyright © 2024 Delicious Studios, LLC. - Grant Perry
 //
@@ -41,4 +41,5 @@ struct Venue: Codable {
 struct Probable: Codable {
    let shortName: String
    let href: String
+   let era: String? 
 }

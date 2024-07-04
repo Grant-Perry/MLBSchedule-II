@@ -80,6 +80,13 @@
 			);
 			target = 9B10F5DB2C2870DB008EB697 /* MLBSchedule */;
 		};
+		9B9444B62C3701FA00B52061 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Color.swift,
+			);
+			target = 9B10F5DB2C2870DB008EB697 /* MLBSchedule */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -87,6 +94,7 @@
 		9B10F60D2C287217008EB697 /* Structs */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (9B10F6102C28722F008EB697 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Structs; sourceTree = "<group>"; };
 		9B10F6112C28C971008EB697 /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (9B10F6152C28C990008EB697 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
 		9B10F6162C28CEFA008EB697 /* Helpers */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (9B10F6192C28CF06008EB697 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Helpers; sourceTree = "<group>"; };
+		9B9444B32C3701EF00B52061 /* Extensions */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (9B9444B62C3701FA00B52061 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Extensions; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +125,7 @@
 		9B10F5D32C2870DB008EB697 = {
 			isa = PBXGroup;
 			children = (
+				9B9444B32C3701EF00B52061 /* Extensions */,
 				9B10F6162C28CEFA008EB697 /* Helpers */,
 				9B10F6112C28C971008EB697 /* Views */,
 				9B10F60D2C287217008EB697 /* Structs */,
@@ -482,7 +491,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.grantperry.MLBSchedule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -512,7 +521,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.grantperry.MLBSchedule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

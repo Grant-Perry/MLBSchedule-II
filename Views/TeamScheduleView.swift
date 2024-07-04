@@ -6,7 +6,6 @@ struct TeamScheduleView: View {
    var body: some View {
 	  NavigationView {
 		 VStack {
-			// Date Selector
 			ScrollView(.horizontal) {
 			   DateButtonView()
 			}
@@ -21,12 +20,12 @@ struct TeamScheduleView: View {
 			   Spacer()
 			}
 
-			// Team Schedule List
 			if vm.filteredEvents.isEmpty {
 			   ProgressView()
 			} else {
 			   List(vm.filteredEvents, id: \.id) { event in
 				  MatchupView(event: event)
+					 .environmentObject(vm)
 			   }
 			   .padding(.top, -18)
 			}
@@ -45,8 +44,3 @@ struct TeamScheduleView: View {
 #Preview {
    TeamScheduleView()
 }
-
-
-
-
-
