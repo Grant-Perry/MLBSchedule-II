@@ -1,45 +1,57 @@
-//   ScheduleStructs.swift
-//   MLBSchedule
-//
-//   Created by: Grant Perry on 6/24/24 at 11:02 AM
-//     Modified:
-//
-//  Copyright © 2024 Delicious Studios, LLC. - Grant Perry
-//
-
 import SwiftUI
 
-// data model structs for TeamScheduleView
-
 struct Scoreboard: Codable {
-   let events: [String: [Event]]
+   let events: [Event]?
 }
 
 struct Event: Identifiable, Codable {
    let id: String
    let date: String
-   let competitors: [Competitor]
-   let link: String
-   let venue: Venue
+   let competitions: [Competition]?
+   let links: [LinkDetail]?
+}
+
+struct Competition: Codable {
+   let competitors: [Competitor]?
+   let venue: Venue?
 }
 
 struct Competitor: Codable {
-   let id: String
-   let abbrev: String
-   let displayName: String
-   let shortDisplayName: String
-   let logo: String
-   let isHome: Bool
-   let score: Int?
-   let probable: Probable?
+   let homeAway: String?
+   let team: Team?
+   let probables: [Probable]?
+   let records: [Record]?
 }
 
-struct Venue: Codable {
-   let fullName: String
+struct Team: Codable {
+   let displayName: String?
+   let logo: String?
+   let records: [Record]?  
 }
 
 struct Probable: Codable {
-   let shortName: String
-   let href: String
-   let era: String? 
+   let athlete: Athlete?
+   let statistics: [Statistic]?
+}
+
+struct Athlete: Codable {
+   let displayName: String?
+   let links: [LinkDetail]?
+}
+
+struct Statistic: Codable {
+   let name: String?
+   let displayValue: String?
+}
+
+struct Record: Codable {
+   let summary: String?
+}
+
+struct LinkDetail: Codable {
+   let href: String?
+}
+
+struct Venue: Codable {
+   let fullName: String?
 }

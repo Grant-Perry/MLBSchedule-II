@@ -51,9 +51,11 @@ class ScheduleViewModel: ObservableObject {
 	  let dateString = dateFormatter.string(from: date)
 	  print("Loading schedule for date: \(dateString)")
 
-	  let urlString = "https://www.espn.com/mlb/schedule/_/date/\(dateString)?_xhr=pageContent&refetchShell=false&offset=-04:00&original=date=\(dateString)&date=\(dateString)"
-
-	  guard let url = URL(string: urlString) else { return }
+	  let urlString = "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=\(dateString)"
+	  guard let url = URL(string: urlString) else {
+		 print("Invalid URL")
+		 return
+	  }
 
 	  var request = URLRequest(url: url)
 	  let cookieHeader = "espn_S2=\(AppConstants.espn_S2); SWID=\(AppConstants.SWID)"
@@ -61,17 +63,50 @@ class ScheduleViewModel: ObservableObject {
 	  request.httpShouldHandleCookies = true
 
 	  URLSession.shared.dataTask(with: request) { data, response, error in
-		 guard let data = data, error == nil else {
-			print("Failed to fetch data: \(String(describing: error))")
+		 if let error = error {
+			print("Failed to fetch data: \(error)")
 			return
+		 }
+
+		 guard let data = data else {
+			print("No data received")
+			return
+		 }
+
+		 // Debug print the raw JSON data
+		 if let jsonString = String(data: data, encoding: .utf8) {
+			print("Raw JSON data: \(jsonString)")
+		 } else {
+			print("Failed to decode raw JSON data to string")
 		 }
 
 		 do {
 			let scoreboard = try JSONDecoder().decode(Scoreboard.self, from: data)
 			DispatchQueue.main.async {
-			   print("Loaded events: \(scoreboard.events.count)")
-			   self.events = scoreboard.events[dateString] ?? []
-			   self.filteredEvents = self.events
+			   if let events = scoreboard.events {
+				  print("Loaded events: \(events.count)")
+				  for event in events {
+					 print("Event ID: \(event.id), Date: \(event.date)")
+					 if let competitions = event.competitions {
+						for competition in competitions {
+						   if let competitors = competition.competitors {
+							  print("Competitors count: \(competitors.count)")
+							  for competitor in competitors {
+								 print("Competitor: \(competitor.team?.displayName ?? "N/A"), Record: \(String(describing: competitor.team?.records))")
+							  }
+						   } else {
+							  print("No competitors found for event ID: \(event.id)")
+						   }
+						}
+					 } else {
+						print("No competitions found for event ID: \(event.id)")
+					 }
+				  }
+				  self.events = events
+				  self.filteredEvents = events
+			   } else {
+				  print("No events found")
+			   }
 			}
 		 } catch {
 			print("Failed to decode JSON: \(error)")
@@ -100,3 +135,4 @@ class ScheduleViewModel: ObservableObject {
 	  }
    }
 }
+

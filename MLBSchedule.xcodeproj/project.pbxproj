@@ -68,6 +68,7 @@
 				DateButtonView.swift,
 				MatchupHeaderView.swift,
 				MatchupView.swift,
+				ProbablePitcherView.swift,
 				TeamScheduleView.swift,
 			);
 			target = 9B10F5DB2C2870DB008EB697 /* MLBSchedule */;
@@ -491,7 +492,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.grantperry.MLBSchedule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -521,7 +522,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.7;
+				MARKETING_VERSION = 1.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.grantperry.MLBSchedule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

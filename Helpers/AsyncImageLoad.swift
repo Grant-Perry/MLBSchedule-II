@@ -1,12 +1,3 @@
-//   AsyncImageLoad.swift
-//   MLBSchedule
-//
-//   Created by: Grant Perry on 6/25/24 at 5:22 PM
-//     Modified: 
-//
-//  Copyright © 2024 Delicious Studios, LLC. - Grant Perry
-//
-
 import SwiftUI
 
 struct asyncImageLoad: View {

@@ -7,17 +7,12 @@ struct MatchupView: View {
 
    var body: some View {
 	  VStack(alignment: .center, spacing: 5) {
-		 if let awayTeam = event.competitors.first(where: { !$0.isHome }),
-			let homeTeam = event.competitors.first(where: { $0.isHome }) {
-
-//			MatchupHeaderView(visitors: awayTeam.displayName, home: homeTeam.displayName)
-//			   .padding(.bottom, 5)
-//			   .multilineTextAlignment(.center)
-//			   .lineLimit(2)
+		 if let awayCompetitor = event.competitions?.first?.competitors?.first(where: { $0.homeAway == "away" }),
+			let homeCompetitor = event.competitions?.first?.competitors?.first(where: { $0.homeAway == "home" }) {
 
 			HStack {
 			   // Away Logo and Record
-			   if let awayLogoURL = URL(string: awayTeam.logo) {
+			   if let awayLogoURL = URL(string: awayCompetitor.team?.logo ?? "") {
 				  VStack {
 					 asyncImageLoad(teamName: awayLogoURL)
 						.frame(width: UIScreen.main.bounds.width * theBounds)
@@ -27,14 +22,14 @@ struct MatchupView: View {
 						.overlay(Circle().stroke(Color.gray, lineWidth: 1))
 						.frame(maxWidth: .infinity, alignment: .center)
 
-//					 if let record = awayTeam.record {
-//						Text(record)
-//						   .font(.footnote)
-//						   .frame(maxWidth: .infinity, alignment: .center)
-//					 }
+					 if let record = awayCompetitor.records?.first {
+						Text("(\(record.summary ?? "N/A"))")
+						   .font(.subheadline)
+						   .foregroundColor(.gray)
+					 }
 
-					 if let awayProbable = awayTeam.probable {
-						ProbablePitcherView(name: awayProbable.shortName, era: awayProbable.era, href: awayProbable.href, alignment: .center)
+					 if let awayProbable = awayCompetitor.probables?.first {
+						ProbablePitcherView(name: awayProbable.athlete?.displayName ?? "N/A", era: awayProbable.statistics?.first { $0.name == "ERA" }?.displayValue ?? "N/A", href: awayProbable.athlete?.links?.first?.href ?? "")
 					 }
 				  }
 				  .fixedSize(horizontal: false, vertical: true)
@@ -45,14 +40,14 @@ struct MatchupView: View {
 				  let (formattedDate, formattedTime) = vm.extractDateAndTime(from: event.date)
 				  Text("\(formattedTime)")
 					 .font(.headline)
-				  Text(event.venue.fullName)
+				  Text(event.competitions?.first?.venue?.fullName ?? "N/A")
 					 .font(.system(size: 10))
 			   }
 			   .frame(maxHeight: .infinity, alignment: .center)
 			   .padding(.top, -40) // move time & venue up a bit
 
 			   // Home Logo and Record
-			   if let homeLogoURL = URL(string: homeTeam.logo) {
+			   if let homeLogoURL = URL(string: homeCompetitor.team?.logo ?? "") {
 				  VStack {
 					 asyncImageLoad(teamName: homeLogoURL)
 						.frame(width: UIScreen.main.bounds.width * theBounds)
@@ -62,65 +57,30 @@ struct MatchupView: View {
 						.overlay(Circle().stroke(Color.gray, lineWidth: 1))
 						.frame(maxWidth: .infinity, alignment: .center)
 
-//					 if let record = homeTeam.record {
-//						Text(record)
-//						   .font(.footnote)
-//						   .frame(maxWidth: .infinity, alignment: .center)
-//					 }
+					 if let record = homeCompetitor.records?.first {
+						Text("(\(record.summary ?? "N/A"))")
+						   .font(.subheadline)
+						   .foregroundColor(.gray)
+					 }
 
-					 if let homeProbable = homeTeam.probable {
-						ProbablePitcherView(name: homeProbable.shortName, era: homeProbable.era, href: homeProbable.href, alignment: .leading)
+					 if let homeProbable = homeCompetitor.probables?.first {
+						ProbablePitcherView(name: homeProbable.athlete?.displayName ?? "N/A", era: homeProbable.statistics?.first { $0.name == "ERA" }?.displayValue ?? "N/A", href: homeProbable.athlete?.links?.first?.href ?? "")
 					 }
 				  }
 				  .fixedSize(horizontal: false, vertical: true)
 			   }
-			} // End of HStack
+			}
 		 }
-	  } // End of VStack
+	  }
 	  .padding([.leading, .trailing], 10)
 	  .padding(.vertical, 5)
 	  .background(Color(.systemGray6))
 	  .cornerRadius(10)
 	  .shadow(radius: 2)
 	  .onTapGesture {
-		 if let url = URL(string: "https://www.espn.com" + event.link) {
+		 if let urlString = event.links?.first?.href, let url = URL(string: urlString) {
 			UIApplication.shared.open(url)
 		 }
-	  }
-   }
-}
-
-// Helper View for Probable Pitcher
-struct ProbablePitcherView: View {
-   var name: String
-   var era: String?
-   var href: String
-   var alignment: HorizontalAlignment
-
-   var body: some View {
-	  VStack {
-		 Link(name, destination: URL(string: href)!)
-			.font(.system(size: 11))
-			.frame(maxWidth: .infinity, alignment: .center) // Convert here
-			.padding(.top, 3)
-//			.fixedSize(horizontal: false, vertical: true)
-
-		 Text("ERA: \(era ?? "N/A")")
-			.font(.system(size: 9))
-			.frame(maxWidth: .infinity, alignment: .center) // Convert here
-//			.fixedSize(horizontal: false, vertical: true)
-	  }
-   }
-}
-
-// Extension to convert HorizontalAlignment to Alignment
-extension HorizontalAlignment {
-   func toAlignment() -> Alignment {
-	  switch self {
-		 case .leading: return .leading
-		 case .center: return .center
-		 case .trailing: return .trailing
-		 default: return .center // Handle unexpected cases
 	  }
    }
 }
