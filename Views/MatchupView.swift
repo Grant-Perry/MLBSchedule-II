@@ -24,7 +24,7 @@ struct MatchupView: View {
 
 					 if let record = awayCompetitor.records?.first {
 						Text("(\(record.summary ?? "N/A"))")
-						   .font(.subheadline)
+						   .font(.system(size: 11))
 						   .foregroundColor(.gray)
 					 }
 
@@ -59,7 +59,7 @@ struct MatchupView: View {
 
 					 if let record = homeCompetitor.records?.first {
 						Text("(\(record.summary ?? "N/A"))")
-						   .font(.subheadline)
+						   .font(.system(size: 11))
 						   .foregroundColor(.gray)
 					 }
 
@@ -74,7 +74,10 @@ struct MatchupView: View {
 	  }
 	  .padding([.leading, .trailing], 10)
 	  .padding(.vertical, 5)
-	  .background(Color(.systemGray6))
+//	  .background(Color(.systemGray6))
+	  .background(LinearGradient(gradient: Gradient(colors: [.gpDark1, .gpDark2]),
+								 startPoint: .bottom,
+								 endPoint: .top))
 	  .cornerRadius(10)
 	  .shadow(radius: 2)
 	  .onTapGesture {

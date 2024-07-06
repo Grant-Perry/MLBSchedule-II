@@ -49,7 +49,7 @@ class ScheduleViewModel: ObservableObject {
 
    func loadSchedule(for date: Date) {
 	  let dateString = dateFormatter.string(from: date)
-	  print("Loading schedule for date: \(dateString)")
+//	  print("Loading schedule for date: \(dateString)")
 
 	  let urlString = "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard?dates=\(dateString)"
 	  guard let url = URL(string: urlString) else {
@@ -75,7 +75,7 @@ class ScheduleViewModel: ObservableObject {
 
 		 // Debug print the raw JSON data
 		 if let jsonString = String(data: data, encoding: .utf8) {
-			print("Raw JSON data: \(jsonString)")
+//			print("Raw JSON data: \(jsonString)")
 		 } else {
 			print("Failed to decode raw JSON data to string")
 		 }
@@ -84,7 +84,7 @@ class ScheduleViewModel: ObservableObject {
 			let scoreboard = try JSONDecoder().decode(Scoreboard.self, from: data)
 			DispatchQueue.main.async {
 			   if let events = scoreboard.events {
-				  print("Loaded events: \(events.count)")
+//				  print("Loaded events: \(events.count)")
 				  for event in events {
 					 print("Event ID: \(event.id), Date: \(event.date)")
 					 if let competitions = event.competitions {

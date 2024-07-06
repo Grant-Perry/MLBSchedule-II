@@ -26,7 +26,7 @@ struct Competitor: Codable {
 struct Team: Codable {
    let displayName: String?
    let logo: String?
-   let records: [Record]?  
+   let records: [Record]?
 }
 
 struct Probable: Codable {

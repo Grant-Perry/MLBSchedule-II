@@ -3,6 +3,8 @@ import SwiftUI
 struct TeamScheduleView: View {
    @ObservedObject var vm = ScheduleViewModel.shared
    @State private var selectedDate = Date()
+   let weekFromNow = Calendar.current.date(byAdding: .day, value: 7, to: Date())!
+   let weekBeforeNow = Calendar.current.date(byAdding: .day, value: -7, to: Date())!
 
    var body: some View {
 	  NavigationView {
@@ -10,6 +12,7 @@ struct TeamScheduleView: View {
 			// Header with Calendar Icon and Date Picker
 			HStack {
 			   Spacer()
+
 			   DatePicker(
 				  "",
 				  selection: Binding(
@@ -20,6 +23,7 @@ struct TeamScheduleView: View {
 						vm.loadSchedule(for: newValue)
 					 }
 				  ),
+				  in: weekBeforeNow...weekFromNow,
 				  displayedComponents: [.date]
 			   )
 			   .datePickerStyle(CompactDatePickerStyle())
@@ -58,6 +62,7 @@ struct TeamScheduleView: View {
 					 .padding(.leading)
 				  Spacer()
 			   }
+			   .padding(.top, -10)
 
 			   List(vm.filteredEvents, id: \.id) { event in
 				  MatchupView(event: event)

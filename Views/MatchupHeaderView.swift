@@ -17,13 +17,13 @@ struct MatchupHeaderView: View {
 			   .padding(.leading)
 			if let visitorRecord = visitors.records?.first, let summary = visitorRecord.summary {
 			   Text("(\(summary))")
-				  .font(.subheadline)
+				  .font(.system(size: 7))
 				  .foregroundColor(.gray)
 			}
 
 			if let homeRecord = home.records?.first, let summary = homeRecord.summary {
 			   Text("(\(summary))")
-				  .font(.subheadline)
+				  .font(.system(size: 7))
 				  .foregroundColor(.gray)
 			}
 
@@ -45,13 +45,13 @@ struct MatchupHeaderView: View {
 			   .padding(.trailing)
 			if let visitorRecord = visitors.records?.first, let summary = visitorRecord.summary {
 			   Text("(\(summary))")
-				  .font(.subheadline)
+				  .font(.system(size: 7))
 				  .foregroundColor(.gray)
 			}
 
 			if let homeRecord = home.records?.first, let summary = homeRecord.summary {
 			   Text("(\(summary))")
-				  .font(.subheadline)
+				  .font(.system(size: 7))
 				  .foregroundColor(.gray)
 			}
 
