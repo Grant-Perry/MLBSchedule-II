@@ -8,7 +8,7 @@ struct TeamScheduleView: View {
 
    var body: some View {
 	  NavigationView {
-		 VStack {
+		 VStack(spacing: 0) {
 			// Header with Calendar Icon and Date Picker
 			HStack {
 			   Spacer()
@@ -28,7 +28,7 @@ struct TeamScheduleView: View {
 			   )
 			   .datePickerStyle(CompactDatePickerStyle())
 			   .labelsHidden()
-			   .frame(maxWidth: 150)
+			   .frame(maxWidth: 115)
 			   .id(selectedDate) // Ensure DatePicker updates when the date changes
 
 			   Image(systemName: "calendar")
@@ -50,27 +50,36 @@ struct TeamScheduleView: View {
 				  }
 			}
 			.padding(.horizontal)
-			.padding(.top, 8)
-			.padding(.bottom, 8)
 
 			if vm.filteredEvents.isEmpty {
 			   ProgressView()
 			} else {
 			   HStack {
 				  Text(vm.headerDateFormatter.string(from: vm.dateFormatter.date(from: vm.selectedDate) ?? Date()))
-					 .font(.title3)
+					 .font(.system(size: 18))
 					 .padding(.leading)
-				  Spacer()
+					 .frame(maxWidth: .infinity, alignment: .leading)
 			   }
-			   .padding(.top, -10)
+			   .padding(.vertical, 8) // Add vertical padding to the HStack
 
 			   List(vm.filteredEvents, id: \.id) { event in
 				  MatchupView(event: event)
 					 .environmentObject(vm)
 			   }
-			   .padding(.top, -14)
-			   .background(.clear)
+			   .listStyle(PlainListStyle()) // Ensure the list style does not add extra padding
 			}
+
+			Spacer()
+
+			VStack(alignment: .center, spacing: 0) {
+			   Text("Version: \(vm.getAppVersion())")
+				  .font(.system(size: 10))
+				  .padding(.bottom, 10)
+				  .padding(.top, 10)
+			}
+			.frame(maxWidth: .infinity)
+			.background(Color.clear)
+			.padding(.bottom, 20) // Adjust padding as necessary
 		 }
 		 .onAppear {
 			let today = Date()

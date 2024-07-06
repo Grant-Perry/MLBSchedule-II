@@ -10,7 +10,7 @@ struct ProbablePitcherView: View {
 	  VStack {
 		 if let url = URL(string: href) {
 			Link(destination: url) {
-			   Text(name)
+			   Text("\(name)")
 				  .font(.system(size: 11))
 				  .frame(maxWidth: .infinity)
 				  .multilineTextAlignment(.center)
@@ -18,7 +18,7 @@ struct ProbablePitcherView: View {
 			}
 		 }
 		 Text("ERA: \(era ?? "N/A")")
-			.font(.system(size: 9))
+			.font(.system(size: 10))
 			.frame(maxWidth: .infinity)
 			.multilineTextAlignment(.center)
 	  }

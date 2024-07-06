@@ -4,6 +4,7 @@ struct MatchupView: View {
    var event: Event
    @EnvironmentObject var vm: ScheduleViewModel
    let theBounds = 0.15
+   let theSummary = 12.0
 
    var body: some View {
 	  VStack(alignment: .center, spacing: 5) {
@@ -24,7 +25,7 @@ struct MatchupView: View {
 
 					 if let record = awayCompetitor.records?.first {
 						Text("(\(record.summary ?? "N/A"))")
-						   .font(.system(size: 11))
+						   .font(.system(size: theSummary))
 						   .foregroundColor(.gray)
 					 }
 
@@ -59,7 +60,7 @@ struct MatchupView: View {
 
 					 if let record = homeCompetitor.records?.first {
 						Text("(\(record.summary ?? "N/A"))")
-						   .font(.system(size: 11))
+						   .font(.system(size: theSummary))
 						   .foregroundColor(.gray)
 					 }
 

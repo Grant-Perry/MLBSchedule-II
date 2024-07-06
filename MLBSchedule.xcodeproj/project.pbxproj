@@ -44,6 +44,7 @@
 		9B10F5F62C2870DC008EB697 /* MLBScheduleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MLBScheduleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B10F5FA2C2870DC008EB697 /* MLBScheduleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLBScheduleUITests.swift; sourceTree = "<group>"; };
 		9B10F5FC2C2870DC008EB697 /* MLBScheduleUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLBScheduleUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		9B9444E12C38D4B000B52061 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -151,6 +152,7 @@
 		9B10F5DE2C2870DB008EB697 /* MLBSchedule */ = {
 			isa = PBXGroup;
 			children = (
+				9B9444E12C38D4B000B52061 /* Info.plist */,
 				9B10F5DF2C2870DB008EB697 /* MLBScheduleApp.swift */,
 				9B10F5E12C2870DB008EB697 /* ContentView.swift */,
 				9B10F5E32C2870DC008EB697 /* Assets.xcassets */,
@@ -482,6 +484,8 @@
 				DEVELOPMENT_TEAM = KP3ZH5K2SY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MLBSchedule/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "MLBSchedule\n";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -492,7 +496,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.91;
+				MARKETING_VERSION = 1.92;
 				PRODUCT_BUNDLE_IDENTIFIER = com.grantperry.MLBSchedule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -512,6 +516,8 @@
 				DEVELOPMENT_TEAM = KP3ZH5K2SY;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = MLBSchedule/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "MLBSchedule\n";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -522,7 +528,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.91;
+				MARKETING_VERSION = 1.92;
 				PRODUCT_BUNDLE_IDENTIFIER = com.grantperry.MLBSchedule;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

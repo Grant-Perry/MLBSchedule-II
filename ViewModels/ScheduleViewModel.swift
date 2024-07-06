@@ -134,5 +134,13 @@ class ScheduleViewModel: ObservableObject {
 		 return ("N/A", "N/A")
 	  }
    }
+
+   func getAppVersion() -> String {
+	  if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+		 return version
+	  } else {
+		 return "Unknown version"
+	  }
+   }
 }
 
