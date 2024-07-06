@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MatchupView: View {
-   var event: Event
+   var event: TeamSchedule.Event
    @EnvironmentObject var vm: ScheduleViewModel
    let theBounds = 0.15
    let theSummary = 12.0

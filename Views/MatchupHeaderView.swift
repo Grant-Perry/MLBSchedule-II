@@ -1,8 +1,8 @@
 import SwiftUI
 
 struct MatchupHeaderView: View {
-   var visitors: Competitor
-   var home: Competitor
+   var visitors: TeamSchedule.Competitor
+   var home: TeamSchedule.Competitor
 
    var body: some View {
 	  HStack {

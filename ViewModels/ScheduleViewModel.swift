@@ -3,8 +3,14 @@ import SwiftUI
 class ScheduleViewModel: ObservableObject {
    static let shared = ScheduleViewModel()
    @Published var selectedDate: String = ""
-   @Published var events: [Event] = []
-   @Published var filteredEvents: [Event] = []
+   @Published var events: [TeamSchedule.Event] = []
+   @Published var filteredEvents: [TeamSchedule.Event] = []
+
+//class ScheduleViewModel: ObservableObject {
+//   static let shared = ScheduleViewModel()
+//   @Published var selectedDate: String = ""
+//   @Published var events: [Event] = []
+//   @Published var filteredEvents: [Event] = []
 
    let dateFormatter: DateFormatter = {
 	  let formatter = DateFormatter()
@@ -81,7 +87,7 @@ class ScheduleViewModel: ObservableObject {
 		 }
 
 		 do {
-			let scoreboard = try JSONDecoder().decode(Scoreboard.self, from: data)
+			let scoreboard = try JSONDecoder().decode(TeamSchedule.Scoreboard.self, from: data)
 			DispatchQueue.main.async {
 			   if let events = scoreboard.events {
 //				  print("Loaded events: \(events.count)")
